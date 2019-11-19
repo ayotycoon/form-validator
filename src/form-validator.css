@@ -1,0 +1,9 @@
+.validatorErrorDisplay {
+  position: absolute;
+  display: inline-block;
+  z-index: 1;
+  color: #85221c;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
