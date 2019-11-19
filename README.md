@@ -23,7 +23,7 @@ copy both css and js files from lib folder to your working directory
 
 Wrap the form element you want to validate in a ```formvalidator``` class
 
-```python
+```html
 import foobar
 <div class="form-validator">
 <form>
@@ -32,4 +32,18 @@ import foobar
 </form>
 
 </div>
+```
+Call the formValidator class in your js file
+
+#if you have multiple validator classes
+
+```javascript
+const validators = document.querySelectorAll('.form-validator');
+validators.forEach(el => new formValidator(validator, true););
+```
+#if you havea single validator class
+
+```javascript
+const validator = document.querySelectorAll('.form-validator');
+> new formValidator(validator, true);
 ```
