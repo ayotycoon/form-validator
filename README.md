@@ -42,11 +42,11 @@ Call the formValidator class in your js file
 const validators = document.querySelectorAll('.form-validator');
 validators.forEach(el => new formValidator(validator, true););
 ```
-#if you havea single validator class
+#if you have a single validator class
 
 ```javascript
 const validator = document.querySelectorAll('.form-validator');
-> new formValidator(validator, true);
+ new formValidator(validator, true);
 ```
 
 
