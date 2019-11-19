@@ -24,9 +24,10 @@ copy both css and js files from lib folder to your working directory
 Wrap the form element you want to validate in a ```formvalidator``` class
 
 ```html
-import foobar
+
 <div class="form-validator">
 <form>
+<input data-validate="required">
 ...
 ...
 </form>
