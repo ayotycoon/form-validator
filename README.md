@@ -1,11 +1,11 @@
-# html-form-validator
+# Form-validator
 
 A simple to use, light weight form validator for your html files
 
 
 ## Installation
 
-copy both css and js files from lib folder to your working directory 
+copy both css and js files from lib folder to your working directory , and import them
 
 ```bash
 ...
@@ -21,7 +21,7 @@ copy both css and js files from lib folder to your working directory
 
 ## Usage
 
-Wrap the form element you want to validate in a ```formvalidator``` class. If it is a form, make sure the form is in the validator class
+Wrap the element you want to validate in a ```form-validator``` html class. If it is a form, make sure the form is in the validator class
 
 ```html
 
@@ -34,21 +34,21 @@ Wrap the form element you want to validate in a ```formvalidator``` class. If it
 
 </div>
 ```
-Call the formValidator class in your js file
+### Call the formValidator class in your js file
 
-#if you have multiple validator classes
+#### if you have multiple validator classes
 
 ```javascript
 const validators = document.querySelector('.form-validator');
 validators.forEach(el => new formValidator(validator));
 ```
-#if you have a single validator class
+#### if you have a single validator class
 
 ```javascript
 const validator = document.querySelectorAll('.form-validator');
  new formValidator(validator);
 ```
-##optional parameters
+#### optional parameters
 ```javascript
 const validator = document.querySelectorAll('.form-validator');
 // all options here are optional
@@ -62,7 +62,7 @@ const options = {
  new formValidator(validator, options);
 ```
 
-##validator class attribues
+#### validator class attribues
 
 
 ```html
@@ -88,8 +88,8 @@ const options = {
 </div>
 ```
 
-##input validation attribues
-###data-validate
+#### input validation attribues
+##### data-validate
 ```html
 <!-- This is the only attribute required for a validation to start-->
 
@@ -109,10 +109,12 @@ data-validate attribute can be any of these
 'not' // input must not match the value in the `not` attribute of the input element
 
 
+validation types should follow this format. number should not come before required
+
  --->
 
  ```
-###data-validate-name
+##### data-validate-name
 ```html
 <!-- By default, form-validator uses the text in the name attribute to reference errors, you can use this attribute to set your custom name-->
 
@@ -124,13 +126,13 @@ data-validate attribute can be any of these
 </select>
 <!--- 
 
-instead of `product_id firld is required`, the error ill be `product is required`
+instead of `product_id field is required`, the error ill be `product is required`
 
 
  --->
 
  ```
-###data-validate-name-errors
+##### data-validate-name-errors
 ```html
 <!--You can use this attribute to customixe the errors for all or some of the validations, use `|` to seprate texts -->
 
