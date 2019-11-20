@@ -28,7 +28,10 @@ class formValidator {
     /** form in the validator */
     validatorForm;
     constructor(elem2Validate,  options) {
-        const startOnInit = validator.getAttribute('data-validate-init') ? true : false;
+        if(!elem2Validate) {
+            return;
+        }
+        const startOnInit = elem2Validate.getAttribute('data-validate-init') ? true : false;
         this.initialize(elem2Validate, startOnInit, options)
 
     }
