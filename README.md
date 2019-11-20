@@ -5,7 +5,9 @@ A simple to use, light weight form validator for your html files
 
 ## Installation
 
-copy both css and js files from lib folder to your working directory , and import them
+copy both css and js files from lib folder to your working directory , and import them.
+
+it is important to place the form-validator.js file at the closing body tag
 
 ```bash
 ...
@@ -132,7 +134,7 @@ instead of `product_id field is required`, the error ill be `product is required
  --->
 
  ```
-##### data-validate-name-errors
+##### data-validate-errors
 ```html
 <!--You can use this attribute to customixe the errors for all or some of the validations, use `|` to seprate texts -->
 
