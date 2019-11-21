@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "npx babel src --out-dir lib"
+    "start": "npx babel src --out-dir lib && jsdoc src/form-validator.js -d docs && jsdoc2md src/form-validator.js > docs/form-validator.md"
   },
   "keywords": [],
   "author": "Sunmola Ayokunle",
@@ -16,6 +16,8 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/plugin-transform-classes": "^7.7.0",
-    "babel-preset-minify": "^0.5.1"
+    "babel-preset-minify": "^0.5.1",
+    "jsdoc": "^3.6.3",
+    "jsdoc-to-markdown": "^5.0.3"
   }
 }
