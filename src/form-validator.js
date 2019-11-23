@@ -12,9 +12,21 @@ class formValidator {
     isDisplayError = false;
     /**
      * @type {boolean}
+    * @summary if the required fields are sorted
+    */
+    sortedArr = false;
+    /**
+     * @type {boolean}
     * @summary if all the inputs in the form are valid
     */
     allValid = false;
+
+    /**
+      * @type {boolean}
+     * @summary if you want the error to push other elements below it
+     */
+
+    pushElement = false
     /**
      * @type {number}
     * @summary Amount of seconds after the user stops typing should the validatio start
@@ -96,7 +108,7 @@ class formValidator {
 
     initialize(elem2Validate, startOnInit, options) {
         if (options) {
-            setOptions(options);
+            this.setOptions(options);
         }
         if (startOnInit) {
             this.isDisplayError = true;
@@ -118,6 +130,8 @@ class formValidator {
      * @summary sets options passed to the formValidator
      */
     setOptions(options) {
+        this.sortedArr = options.sortedArr || false;
+        this.pushElement = options.pushElement || false;
         this.debounceTime = options.debounceTime || 1000;
         this.elem2ValidateListener = options.elem2ValidateListener || 'input';
         this.dangerColor = options.dangerColor || '#ffd9d7bd';
@@ -182,7 +196,21 @@ class formValidator {
     * 
     */
 
+    reArrangeArr(arr) {
+        const sortedArr = [];
+       const sortedArrGlobal = ['number', 'decimal', 'price', 'required', 'regex', 'max', 'min', 'not']
 
+       sortedArrGlobal.forEach(a_arr => {
+           if (arr.indexOf(a_arr) != -1) {
+               sortedArr.push(a_arr);
+
+           }
+
+       })
+
+       return sortedArr
+    
+    }
     eachInputValidate(inputEl, index, fromListener) {
         /**
          * Get validator string from the input element
@@ -226,7 +254,13 @@ class formValidator {
         /**
          * Split the validation string to array
          */
-        const validatorsArr = validatorsStr.split('|');
+        let validatorsArr;
+        if(this.sortedArr) {
+          validatorsStr.split('|');
+        } else {
+            validatorsArr = this.reArrangeArr(validatorsStr.split('|'));
+        }
+
         /**
          * Hash containing processed validations
          */
@@ -245,16 +279,9 @@ class formValidator {
             // set the hash to true
             validatorsHash[validateType] = true;
             switch (validateType) {
-                case 'required':
-                    // if no input throw an error
-                    if ((value == '') || value == null) {
-                        return this.displayError(inputEl, validatorsErrorArr[valIndex] ? validatorsErrorArr[valIndex] : fieldName + ' ' + this.errorHash['required'], fromListener);
 
-                    } else {
-                        this.clearError(inputEl, index, valIndex == validatorsArr.length - 1);
-                    }
-                    break;
                 case 'number':
+                    inputEl.setAttribute("inputmode", "numeric");
                     const intVal = parseInt(value);
                     if (value != intVal) {
 
@@ -269,6 +296,7 @@ class formValidator {
 
                     break;
                 case 'decimal':
+                    inputEl.setAttribute("inputmode", "decimal");
                     const floatVal = parseFloat(value);
 
 
@@ -284,6 +312,7 @@ class formValidator {
                     inputType = 'decimal';
                     break;
                 case 'price':
+                    inputEl.setAttribute("inputmode", "decimal");
                     const regex = value.match(/(\d+(\.)?(\d{1,2})?)/);
                     if (!regex) {
 
@@ -296,6 +325,15 @@ class formValidator {
 
                     }
                     inputType = 'price';
+                    break;
+                case 'required':
+                    // if no input throw an error
+                    if ((value == '') || value == null) {
+                        return this.displayError(inputEl, validatorsErrorArr[valIndex] ? validatorsErrorArr[valIndex] : fieldName + ' ' + this.errorHash['required'], fromListener);
+
+                    } else {
+                        this.clearError(inputEl, index, valIndex == validatorsArr.length - 1);
+                    }
                     break;
                 case 'regex':
                     const regexValue = inputEl.getAttribute('regex');
@@ -312,7 +350,7 @@ class formValidator {
                         this.clearError(inputEl, index, valIndex == validatorsArr.length - 1)
 
                     }
-                    inputType = 'price';
+              
                     break;
 
                 case 'max':
@@ -407,7 +445,7 @@ class formValidator {
     displayError(inputEl, error, fromListener) {
         // in error at all, allvalid should be false
         this.allValid = false;
-        
+
         if (!this.isDisplayError && !fromListener) {
             return;
         }
@@ -460,6 +498,14 @@ class formValidator {
                 wrapper.appendChild(inputEl);
                 // move the error too
                 wrapper.appendChild(errorDisplay);
+
+                if (this.pushElement) {
+                    errorDisplay.style.position = 'static';
+
+                    // errorDisplay.style.top = (inputEl.offsetHeight + errorDisplay.offsetHeight ) + 'px'
+
+                }
+
             } else {
 
                 inputErrorEl.innerText = error;

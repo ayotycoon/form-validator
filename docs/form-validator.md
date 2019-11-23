@@ -11,6 +11,7 @@ formValidator
     * [new formValidator(elem2Validate, options)](#new_formValidator_new)
     * [.isDisplayError](#formValidator+isDisplayError) : <code>boolean</code>
     * [.allValid](#formValidator+allValid) : <code>boolean</code>
+    * [.pushElement](#formValidator+pushElement) : <code>boolean</code>
     * [.debounceTime](#formValidator+debounceTime) : <code>number</code>
     * [.debounceSetTimeout](#formValidator+debounceSetTimeout) : <code>timer</code>
     * [.dangerColor](#formValidator+dangerColor) : <code>string</code>
@@ -24,7 +25,7 @@ formValidator
     * [.initialize(elem2Validate, startOnInit, options)](#formValidator+initialize)
     * [.setOptions(options)](#formValidator+setOptions)
     * [.startValidator()](#formValidator+startValidator)
-    * [.eachInputValidate(inputEl, index, fromListener)](#formValidator+eachInputValidate)
+    * [.reArrangeArr(inputEl, index, fromListener)](#formValidator+reArrangeArr)
 
 <a name="new_formValidator_new"></a>
 
@@ -45,6 +46,11 @@ formValidator
 ### formValidator.allValid : <code>boolean</code>
 **Kind**: instance property of [<code>formValidator</code>](#formValidator)  
 **Summary**: if all the inputs in the form are valid  
+<a name="formValidator+pushElement"></a>
+
+### formValidator.pushElement : <code>boolean</code>
+**Kind**: instance property of [<code>formValidator</code>](#formValidator)  
+**Summary**: if you want the error to push other elements below it  
 <a name="formValidator+debounceTime"></a>
 
 ### formValidator.debounceTime : <code>number</code>
@@ -122,9 +128,9 @@ formValidator
 ### formValidator.startValidator()
 **Kind**: instance method of [<code>formValidator</code>](#formValidator)  
 **Summary**: starts the validation process  
-<a name="formValidator+eachInputValidate"></a>
+<a name="formValidator+reArrangeArr"></a>
 
-### formValidator.eachInputValidate(inputEl, index, fromListener)
+### formValidator.reArrangeArr(inputEl, index, fromListener)
 **Kind**: instance method of [<code>formValidator</code>](#formValidator)  
 **Summary**: vaidator for each input  
 

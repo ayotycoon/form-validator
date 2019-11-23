@@ -55,7 +55,11 @@ const validator = document.querySelectorAll('.form-validator');
 const validator = document.querySelectorAll('.form-validator');
 // all options here are optional
 const options = {
-            debounceTime : 1000, // how many seconds from when the user stops typing should the validation start. set to 0 if you want it immediate
+    
+     
+        sortedArr: false // set to true if your error attributes follows this format ['number', 'decimal', 'price', 'required', 'regex', 'max', 'min', 'not']
+        pushElement: false // if you want the error to push other elements below it
+        debounceTime : 1000, // how many seconds from when the user stops typing should the validation start. set to 0 if you want it immediate
         elem2ValidateListener :  'input', // what event listner? default is input
         dangerColor :  '#ffd9d7bd', // color of input element and error text when the validaror detects an error
         successColor :  'white'; // color of input element and error text when the validaror corrects a error. default is white. try using  #d4edda
